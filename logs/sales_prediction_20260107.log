@@ -1,0 +1,688 @@
+2026-01-07 15:42:31 - main - INFO - 配置文件加载完成
+2026-01-07 15:42:31 - main - INFO - 原始数据加载完成
+2026-01-07 15:42:31 - main - INFO - ========== 开始处理商品[4701098]门店[205625] ==========
+2026-01-07 15:42:31 - DailyPreprocessor - INFO - 开始预处理商品[4701098]门店[205625]销售数据
+2026-01-07 15:42:31 - DailyPreprocessor - INFO - 基础过滤完成 | 过滤后数据行数: 570
+2026-01-07 15:42:31 - DailyPreprocessor - INFO - 每日聚合完成 | 聚合后数据行数: 242
+2026-01-07 15:42:31 - DailyPreprocessor - ERROR - 销售数据预处理失败: '商品编码'
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\data\daily_preprocessor.py", line 40, in preprocess_sales_data
+    final_df = self._fill_missing_dates(basic_processed_df)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\data\daily_preprocessor.py", line 162, in _fill_missing_dates
+    full_df[col] = rule(full_df[col])
+                   ^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\data\daily_preprocessor.py", line 155, in <lambda>
+    "售价": lambda x: x.groupby("商品编码").transform(lambda y: y.fillna(y.mean())),
+                    ^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\series.py", line 2076, in groupby
+    return SeriesGroupBy(
+           ^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\groupby\groupby.py", line 965, in __init__
+    grouper, exclusions, obj = get_grouper(
+                               ^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\groupby\grouper.py", line 888, in get_grouper
+    raise KeyError(gpr)
+KeyError: '商品编码'
+2026-01-07 15:42:31 - main - ERROR - 主流程执行失败: '商品编码'
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\prophet_cv.py", line 38, in main
+    sales_processed_df = preprocessor.preprocess_sales_data(sales_raw_df)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\data\daily_preprocessor.py", line 40, in preprocess_sales_data
+    final_df = self._fill_missing_dates(basic_processed_df)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\data\daily_preprocessor.py", line 162, in _fill_missing_dates
+    full_df[col] = rule(full_df[col])
+                   ^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\data\daily_preprocessor.py", line 155, in <lambda>
+    "售价": lambda x: x.groupby("商品编码").transform(lambda y: y.fillna(y.mean())),
+                    ^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\series.py", line 2076, in groupby
+    return SeriesGroupBy(
+           ^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\groupby\groupby.py", line 965, in __init__
+    grouper, exclusions, obj = get_grouper(
+                               ^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\groupby\grouper.py", line 888, in get_grouper
+    raise KeyError(gpr)
+KeyError: '商品编码'
+2026-01-07 15:45:59 - main - INFO - 配置文件加载完成
+2026-01-07 15:45:59 - main - INFO - 原始数据加载完成
+2026-01-07 15:45:59 - main - INFO - ========== 开始处理商品[4701098]门店[205625] ==========
+2026-01-07 15:45:59 - DailyPreprocessor - INFO - 开始预处理商品[4701098]门店[205625]销售数据
+2026-01-07 15:45:59 - DailyPreprocessor - INFO - 基础过滤完成 | 过滤后数据行数: 570
+2026-01-07 15:45:59 - DailyPreprocessor - INFO - 每日聚合完成 | 聚合后数据行数: 242
+2026-01-07 15:45:59 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\sales_preprocessed_4701098_205625_20260107_154559.csv | 数据行数: 304
+2026-01-07 15:45:59 - DailyPreprocessor - INFO - 完成销售数据预处理 | 最终数据行数: 304
+2026-01-07 15:45:59 - DailyPreprocessor - INFO - 开始预处理天气数据
+2026-01-07 15:45:59 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\weather_preprocessed_20260107_154559.csv | 数据行数: 305
+2026-01-07 15:45:59 - DailyPreprocessor - INFO - 开始预处理日历数据
+2026-01-07 15:45:59 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\calendar_preprocessed_20260107_154559.csv | 数据行数: 304
+2026-01-07 15:45:59 - DailyFeatureStore - INFO - 开始全流程特征构建
+2026-01-07 15:45:59 - DailyFeatureStore - INFO - 时间特征创建完成
+2026-01-07 15:45:59 - DailyFeatureStore - INFO - 滞后特征创建完成 | 窗口: [1, 3, 7, 14, 30]
+2026-01-07 15:45:59 - DailyFeatureStore - ERROR - 特征构建失败: incompatible index of inserted column with frame index
+Traceback (most recent call last):
+  File "G:\github\conda\Lib\site-packages\pandas\core\frame.py", line 12020, in _reindex_for_setitem
+    reindexed_value = value.reindex(index)._values
+                      ^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\series.py", line 5094, in reindex
+    return super().reindex(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\generic.py", line 5289, in reindex
+    return self._reindex_axes(
+           ^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\generic.py", line 5304, in _reindex_axes
+    new_index, indexer = ax.reindex(
+                         ^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\indexes\base.py", line 4434, in reindex
+    target = self._wrap_reindex_result(target, indexer, preserve_names)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\indexes\multi.py", line 2556, in _wrap_reindex_result
+    target = MultiIndex.from_tuples(target)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\indexes\multi.py", line 205, in new_meth
+    return meth(self_or_cls, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\indexes\multi.py", line 573, in from_tuples
+    arrays = list(lib.tuples_to_object_array(tuples).T)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas\_libs\lib.pyx", line 2984, in pandas._libs.lib.tuples_to_object_array
+ValueError: Buffer dtype mismatch, expected 'Python object' but got 'long long'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\data\daily_feature_store.py", line 181, in build_all_features
+    df = self.create_rolling_features(df)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\data\daily_feature_store.py", line 65, in create_rolling_features
+    df = df.assign(**rolling_features)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\frame.py", line 4889, in assign
+    data[k] = com.apply_if_callable(v, data)
+    ~~~~^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\frame.py", line 3980, in __setitem__
+    self._set_item(key, value)
+  File "G:\github\conda\Lib\site-packages\pandas\core\frame.py", line 4174, in _set_item
+    value = self._sanitize_column(value)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\frame.py", line 4912, in _sanitize_column
+    return _reindex_for_setitem(Series(value), self.index)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\frame.py", line 12027, in _reindex_for_setitem
+    raise TypeError(
+TypeError: incompatible index of inserted column with frame index
+2026-01-07 15:45:59 - main - ERROR - 主流程执行失败: incompatible index of inserted column with frame index
+Traceback (most recent call last):
+  File "G:\github\conda\Lib\site-packages\pandas\core\frame.py", line 12020, in _reindex_for_setitem
+    reindexed_value = value.reindex(index)._values
+                      ^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\series.py", line 5094, in reindex
+    return super().reindex(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\generic.py", line 5289, in reindex
+    return self._reindex_axes(
+           ^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\generic.py", line 5304, in _reindex_axes
+    new_index, indexer = ax.reindex(
+                         ^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\indexes\base.py", line 4434, in reindex
+    target = self._wrap_reindex_result(target, indexer, preserve_names)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\indexes\multi.py", line 2556, in _wrap_reindex_result
+    target = MultiIndex.from_tuples(target)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\indexes\multi.py", line 205, in new_meth
+    return meth(self_or_cls, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\indexes\multi.py", line 573, in from_tuples
+    arrays = list(lib.tuples_to_object_array(tuples).T)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas\_libs\lib.pyx", line 2984, in pandas._libs.lib.tuples_to_object_array
+ValueError: Buffer dtype mismatch, expected 'Python object' but got 'long long'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\prophet_cv.py", line 48, in main
+    final_features_df = feature_store.build_all_features(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\data\daily_feature_store.py", line 181, in build_all_features
+    df = self.create_rolling_features(df)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\data\daily_feature_store.py", line 65, in create_rolling_features
+    df = df.assign(**rolling_features)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\frame.py", line 4889, in assign
+    data[k] = com.apply_if_callable(v, data)
+    ~~~~^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\frame.py", line 3980, in __setitem__
+    self._set_item(key, value)
+  File "G:\github\conda\Lib\site-packages\pandas\core\frame.py", line 4174, in _set_item
+    value = self._sanitize_column(value)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\frame.py", line 4912, in _sanitize_column
+    return _reindex_for_setitem(Series(value), self.index)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\frame.py", line 12027, in _reindex_for_setitem
+    raise TypeError(
+TypeError: incompatible index of inserted column with frame index
+2026-01-07 15:51:37 - main - INFO - 配置文件加载完成
+2026-01-07 15:51:37 - main - INFO - 原始数据加载完成
+2026-01-07 15:51:37 - main - INFO - ========== 开始处理商品[4701098]门店[205625] ==========
+2026-01-07 15:51:37 - DailyPreprocessor - INFO - 开始预处理商品[4701098]门店[205625]销售数据
+2026-01-07 15:51:37 - DailyPreprocessor - INFO - 基础过滤完成 | 过滤后数据行数: 570
+2026-01-07 15:51:37 - DailyPreprocessor - INFO - 每日聚合完成 | 聚合后数据行数: 242
+2026-01-07 15:51:37 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\sales_preprocessed_4701098_205625_20260107_155137.csv | 数据行数: 304
+2026-01-07 15:51:37 - DailyPreprocessor - INFO - 完成销售数据预处理 | 最终数据行数: 304
+2026-01-07 15:51:37 - DailyPreprocessor - INFO - 开始预处理天气数据
+2026-01-07 15:51:37 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\weather_preprocessed_20260107_155137.csv | 数据行数: 305
+2026-01-07 15:51:37 - DailyPreprocessor - INFO - 开始预处理日历数据
+2026-01-07 15:51:37 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\calendar_preprocessed_20260107_155137.csv | 数据行数: 304
+2026-01-07 15:51:37 - DailyFeatureStore - INFO - 开始全流程特征构建
+2026-01-07 15:51:37 - DailyFeatureStore - INFO - 时间特征创建完成
+2026-01-07 15:51:37 - DailyFeatureStore - INFO - 天气增强特征创建完成
+2026-01-07 15:51:37 - DailyFeatureStore - INFO - 日历增强特征创建完成
+2026-01-07 15:51:37 - DailyFeatureStore - ERROR - 特征构建失败: ufunc 'maximum' did not contain a loop with signature matching types (dtype('float64'), dtype('<U4')) -> None
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\data\daily_feature_store.py", line 214, in build_all_features
+    df = self.create_interaction_features(df)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\data\daily_feature_store.py", line 150, in create_interaction_features
+    safe_discount = np.maximum(df["实际折扣率"], self.discount_rate_min)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\generic.py", line 2113, in __array_ufunc__
+    return arraylike.array_ufunc(self, ufunc, method, *inputs, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\arraylike.py", line 402, in array_ufunc
+    result = getattr(ufunc, method)(*inputs, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'maximum' did not contain a loop with signature matching types (dtype('float64'), dtype('<U4')) -> None
+2026-01-07 15:51:37 - main - ERROR - 主流程执行失败: ufunc 'maximum' did not contain a loop with signature matching types (dtype('float64'), dtype('<U4')) -> None
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\prophet_cv.py", line 48, in main
+    final_features_df = feature_store.build_all_features(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\data\daily_feature_store.py", line 214, in build_all_features
+    df = self.create_interaction_features(df)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\data\daily_feature_store.py", line 150, in create_interaction_features
+    safe_discount = np.maximum(df["实际折扣率"], self.discount_rate_min)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\generic.py", line 2113, in __array_ufunc__
+    return arraylike.array_ufunc(self, ufunc, method, *inputs, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\arraylike.py", line 402, in array_ufunc
+    result = getattr(ufunc, method)(*inputs, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'maximum' did not contain a loop with signature matching types (dtype('float64'), dtype('<U4')) -> None
+2026-01-07 15:55:34 - main - INFO - 配置文件加载完成
+2026-01-07 15:55:34 - main - INFO - 原始数据加载完成
+2026-01-07 15:55:34 - main - INFO - ========== 开始处理商品[4701098]门店[205625] ==========
+2026-01-07 15:55:34 - DailyPreprocessor - INFO - 开始预处理商品[4701098]门店[205625]销售数据
+2026-01-07 15:55:34 - DailyPreprocessor - INFO - 基础过滤完成 | 过滤后数据行数: 570
+2026-01-07 15:55:34 - DailyPreprocessor - INFO - 每日聚合完成 | 聚合后数据行数: 242
+2026-01-07 15:55:34 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\sales_preprocessed_4701098_205625_20260107_155534.csv | 数据行数: 304
+2026-01-07 15:55:34 - DailyPreprocessor - INFO - 完成销售数据预处理 | 最终数据行数: 304
+2026-01-07 15:55:34 - DailyPreprocessor - INFO - 开始预处理天气数据
+2026-01-07 15:55:34 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\weather_preprocessed_20260107_155534.csv | 数据行数: 305
+2026-01-07 15:55:34 - DailyPreprocessor - INFO - 开始预处理日历数据
+2026-01-07 15:55:34 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\calendar_preprocessed_20260107_155534.csv | 数据行数: 304
+2026-01-07 15:55:34 - DailyFeatureStore - INFO - 开始全流程特征构建
+2026-01-07 15:55:34 - DailyFeatureStore - INFO - 时间特征创建完成
+2026-01-07 15:55:34 - DailyFeatureStore - INFO - 天气增强特征创建完成
+2026-01-07 15:55:34 - DailyFeatureStore - INFO - 日历增强特征创建完成
+2026-01-07 15:55:34 - DailyFeatureStore - INFO - 分类特征编码完成
+2026-01-07 15:55:34 - save_to_csv - INFO - 成功保存CSV: output\features\final_features_20260107_155534.csv | 数据行数: 304
+2026-01-07 15:55:34 - DailyFeatureStore - INFO - 全流程特征构建完成
+2026-01-07 15:55:34 - ProphetModel - INFO - 开始训练Prophet模型
+2026-01-07 15:55:34 - ProphetModel - ERROR - 模型训练失败: Prophet.__init__() got an unexpected keyword argument 'forecast_periods'
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\models\prophet_model.py", line 46, in train_prophet
+    self.model = Prophet(**adjusted_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Prophet.__init__() got an unexpected keyword argument 'forecast_periods'
+2026-01-07 15:55:34 - main - ERROR - 主流程执行失败: Prophet.__init__() got an unexpected keyword argument 'forecast_periods'
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\prophet_cv.py", line 56, in main
+    model, prophet_df = prophet_model.train_prophet(final_features_df, target_col="销售数量")
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\models\prophet_model.py", line 46, in train_prophet
+    self.model = Prophet(**adjusted_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Prophet.__init__() got an unexpected keyword argument 'forecast_periods'
+2026-01-07 15:58:51 - main - INFO - 配置文件加载完成
+2026-01-07 15:58:51 - main - INFO - 原始数据加载完成
+2026-01-07 15:58:51 - main - INFO - ========== 开始处理商品[4701098]门店[205625] ==========
+2026-01-07 15:58:51 - DailyPreprocessor - INFO - 开始预处理商品[4701098]门店[205625]销售数据
+2026-01-07 15:58:51 - DailyPreprocessor - INFO - 基础过滤完成 | 过滤后数据行数: 570
+2026-01-07 15:58:51 - DailyPreprocessor - INFO - 每日聚合完成 | 聚合后数据行数: 242
+2026-01-07 15:58:52 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\sales_preprocessed_4701098_205625_20260107_155851.csv | 数据行数: 304
+2026-01-07 15:58:52 - DailyPreprocessor - INFO - 完成销售数据预处理 | 最终数据行数: 304
+2026-01-07 15:58:52 - DailyPreprocessor - INFO - 开始预处理天气数据
+2026-01-07 15:58:52 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\weather_preprocessed_20260107_155852.csv | 数据行数: 305
+2026-01-07 15:58:52 - DailyPreprocessor - INFO - 开始预处理日历数据
+2026-01-07 15:58:52 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\calendar_preprocessed_20260107_155852.csv | 数据行数: 304
+2026-01-07 15:58:52 - DailyFeatureStore - INFO - 开始全流程特征构建
+2026-01-07 15:58:52 - DailyFeatureStore - INFO - 时间特征创建完成
+2026-01-07 15:58:52 - DailyFeatureStore - INFO - 天气增强特征创建完成
+2026-01-07 15:58:52 - DailyFeatureStore - INFO - 日历增强特征创建完成
+2026-01-07 15:58:52 - DailyFeatureStore - INFO - 分类特征编码完成
+2026-01-07 15:58:52 - save_to_csv - INFO - 成功保存CSV: output\features\final_features_20260107_155852.csv | 数据行数: 304
+2026-01-07 15:58:52 - DailyFeatureStore - INFO - 全流程特征构建完成
+2026-01-07 15:58:52 - ProphetModel - INFO - 开始训练Prophet模型
+2026-01-07 15:58:52 - ProphetModel - ERROR - 模型训练失败: Prophet.__init__() got an unexpected keyword argument 'forecast_freq'
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\models\prophet_model.py", line 46, in train_prophet
+    self.model = Prophet(**adjusted_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Prophet.__init__() got an unexpected keyword argument 'forecast_freq'
+2026-01-07 15:58:52 - main - ERROR - 主流程执行失败: Prophet.__init__() got an unexpected keyword argument 'forecast_freq'
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\prophet_cv.py", line 56, in main
+    model, prophet_df = prophet_model.train_prophet(final_features_df, target_col="销售数量")
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\models\prophet_model.py", line 46, in train_prophet
+    self.model = Prophet(**adjusted_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Prophet.__init__() got an unexpected keyword argument 'forecast_freq'
+2026-01-07 15:59:26 - main - INFO - 配置文件加载完成
+2026-01-07 15:59:26 - main - INFO - 原始数据加载完成
+2026-01-07 15:59:26 - main - INFO - ========== 开始处理商品[4701098]门店[205625] ==========
+2026-01-07 15:59:26 - DailyPreprocessor - INFO - 开始预处理商品[4701098]门店[205625]销售数据
+2026-01-07 15:59:26 - DailyPreprocessor - INFO - 基础过滤完成 | 过滤后数据行数: 570
+2026-01-07 15:59:26 - DailyPreprocessor - INFO - 每日聚合完成 | 聚合后数据行数: 242
+2026-01-07 15:59:26 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\sales_preprocessed_4701098_205625_20260107_155926.csv | 数据行数: 304
+2026-01-07 15:59:26 - DailyPreprocessor - INFO - 完成销售数据预处理 | 最终数据行数: 304
+2026-01-07 15:59:26 - DailyPreprocessor - INFO - 开始预处理天气数据
+2026-01-07 15:59:26 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\weather_preprocessed_20260107_155926.csv | 数据行数: 305
+2026-01-07 15:59:26 - DailyPreprocessor - INFO - 开始预处理日历数据
+2026-01-07 15:59:26 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\calendar_preprocessed_20260107_155926.csv | 数据行数: 304
+2026-01-07 15:59:26 - DailyFeatureStore - INFO - 开始全流程特征构建
+2026-01-07 15:59:26 - DailyFeatureStore - INFO - 时间特征创建完成
+2026-01-07 15:59:26 - DailyFeatureStore - INFO - 天气增强特征创建完成
+2026-01-07 15:59:26 - DailyFeatureStore - INFO - 日历增强特征创建完成
+2026-01-07 15:59:26 - DailyFeatureStore - INFO - 分类特征编码完成
+2026-01-07 15:59:26 - save_to_csv - INFO - 成功保存CSV: output\features\final_features_20260107_155926.csv | 数据行数: 304
+2026-01-07 15:59:26 - DailyFeatureStore - INFO - 全流程特征构建完成
+2026-01-07 15:59:26 - ProphetModel - INFO - 开始训练Prophet模型
+2026-01-07 15:59:27 - ProphetModel - ERROR - 模型训练失败: Lunar.__init__() missing 3 required positional arguments: 'hour', 'minute', and 'second'
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\models\prophet_model.py", line 47, in train_prophet
+    self._add_chinese_holidays(self.model, prophet_df["ds"].min().year, prophet_df["ds"].max().year)
+  File "E:\github\my-smart_store\models\prophet_model.py", line 97, in _add_chinese_holidays
+    (self._lunar_to_solar(year, 1, 1), "春节"),  # 正月初一
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\models\prophet_model.py", line 115, in _lunar_to_solar
+    lunar = Lunar(year, month, day)
+            ^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Lunar.__init__() missing 3 required positional arguments: 'hour', 'minute', and 'second'
+2026-01-07 15:59:27 - main - ERROR - 主流程执行失败: Lunar.__init__() missing 3 required positional arguments: 'hour', 'minute', and 'second'
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\prophet_cv.py", line 56, in main
+    model, prophet_df = prophet_model.train_prophet(final_features_df, target_col="销售数量")
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\models\prophet_model.py", line 47, in train_prophet
+    self._add_chinese_holidays(self.model, prophet_df["ds"].min().year, prophet_df["ds"].max().year)
+  File "E:\github\my-smart_store\models\prophet_model.py", line 97, in _add_chinese_holidays
+    (self._lunar_to_solar(year, 1, 1), "春节"),  # 正月初一
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\models\prophet_model.py", line 115, in _lunar_to_solar
+    lunar = Lunar(year, month, day)
+            ^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Lunar.__init__() missing 3 required positional arguments: 'hour', 'minute', and 'second'
+2026-01-07 16:00:48 - main - INFO - 配置文件加载完成
+2026-01-07 16:00:48 - main - INFO - 原始数据加载完成
+2026-01-07 16:00:48 - main - INFO - ========== 开始处理商品[4701098]门店[205625] ==========
+2026-01-07 16:00:48 - DailyPreprocessor - INFO - 开始预处理商品[4701098]门店[205625]销售数据
+2026-01-07 16:00:48 - DailyPreprocessor - INFO - 基础过滤完成 | 过滤后数据行数: 570
+2026-01-07 16:00:48 - DailyPreprocessor - INFO - 每日聚合完成 | 聚合后数据行数: 242
+2026-01-07 16:00:48 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\sales_preprocessed_4701098_205625_20260107_160048.csv | 数据行数: 304
+2026-01-07 16:00:48 - DailyPreprocessor - INFO - 完成销售数据预处理 | 最终数据行数: 304
+2026-01-07 16:00:48 - DailyPreprocessor - INFO - 开始预处理天气数据
+2026-01-07 16:00:48 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\weather_preprocessed_20260107_160048.csv | 数据行数: 305
+2026-01-07 16:00:48 - DailyPreprocessor - INFO - 开始预处理日历数据
+2026-01-07 16:00:48 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\calendar_preprocessed_20260107_160048.csv | 数据行数: 304
+2026-01-07 16:00:48 - DailyFeatureStore - INFO - 开始全流程特征构建
+2026-01-07 16:00:48 - DailyFeatureStore - INFO - 时间特征创建完成
+2026-01-07 16:00:48 - DailyFeatureStore - INFO - 天气增强特征创建完成
+2026-01-07 16:00:48 - DailyFeatureStore - INFO - 日历增强特征创建完成
+2026-01-07 16:00:48 - DailyFeatureStore - INFO - 分类特征编码完成
+2026-01-07 16:00:48 - save_to_csv - INFO - 成功保存CSV: output\features\final_features_20260107_160048.csv | 数据行数: 304
+2026-01-07 16:00:48 - DailyFeatureStore - INFO - 全流程特征构建完成
+2026-01-07 16:00:48 - ProphetModel - INFO - 开始训练Prophet模型
+2026-01-07 16:00:48 - ProphetModel - INFO - 添加8个节假日到模型
+2026-01-07 16:00:48 - ProphetModel - INFO - 添加8个回归因子到模型
+2026-01-07 16:00:48 - ProphetModel - ERROR - 模型训练失败: Regressor '是否恶劣天气' missing from dataframe
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\models\prophet_model.py", line 51, in train_prophet
+    self.model.fit(prophet_df)
+  File "G:\github\conda\Lib\site-packages\prophet\forecaster.py", line 1220, in fit
+    model_inputs = self.preprocess(df, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\prophet\forecaster.py", line 1138, in preprocess
+    self.history = self.setup_dataframe(history, initialize_scales=True)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\prophet\forecaster.py", line 300, in setup_dataframe
+    raise ValueError(
+ValueError: Regressor '是否恶劣天气' missing from dataframe
+2026-01-07 16:00:48 - main - ERROR - 主流程执行失败: Regressor '是否恶劣天气' missing from dataframe
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\prophet_cv.py", line 56, in main
+    model, prophet_df = prophet_model.train_prophet(final_features_df, target_col="销售数量")
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\models\prophet_model.py", line 51, in train_prophet
+    self.model.fit(prophet_df)
+  File "G:\github\conda\Lib\site-packages\prophet\forecaster.py", line 1220, in fit
+    model_inputs = self.preprocess(df, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\prophet\forecaster.py", line 1138, in preprocess
+    self.history = self.setup_dataframe(history, initialize_scales=True)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\prophet\forecaster.py", line 300, in setup_dataframe
+    raise ValueError(
+ValueError: Regressor '是否恶劣天气' missing from dataframe
+2026-01-07 16:07:18 - main - INFO - 配置文件加载完成
+2026-01-07 16:07:18 - main - INFO - 原始数据加载完成
+2026-01-07 16:07:18 - main - INFO - ========== 开始处理商品[4701098]门店[205625] ==========
+2026-01-07 16:07:18 - DailyPreprocessor - INFO - 开始预处理商品[4701098]门店[205625]销售数据
+2026-01-07 16:07:18 - DailyPreprocessor - INFO - 基础过滤完成 | 过滤后数据行数: 570
+2026-01-07 16:07:18 - DailyPreprocessor - INFO - 每日聚合完成 | 聚合后数据行数: 242
+2026-01-07 16:07:18 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\sales_preprocessed_4701098_205625_20260107_160718.csv | 数据行数: 304
+2026-01-07 16:07:18 - DailyPreprocessor - INFO - 完成销售数据预处理 | 最终数据行数: 304
+2026-01-07 16:07:18 - DailyPreprocessor - INFO - 开始预处理天气数据
+2026-01-07 16:07:18 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\weather_preprocessed_20260107_160718.csv | 数据行数: 305
+2026-01-07 16:07:18 - DailyPreprocessor - INFO - 开始预处理日历数据
+2026-01-07 16:07:18 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\calendar_preprocessed_20260107_160718.csv | 数据行数: 304
+2026-01-07 16:07:18 - DailyFeatureStore - INFO - 开始全流程特征构建
+2026-01-07 16:07:18 - DailyFeatureStore - INFO - 时间特征创建完成
+2026-01-07 16:07:18 - DailyFeatureStore - INFO - 天气增强特征创建完成
+2026-01-07 16:07:18 - DailyFeatureStore - INFO - 日历增强特征创建完成
+2026-01-07 16:07:18 - DailyFeatureStore - INFO - 分类特征编码完成
+2026-01-07 16:07:18 - save_to_csv - INFO - 成功保存CSV: output\features\final_features_20260107_160718.csv | 数据行数: 304
+2026-01-07 16:07:18 - DailyFeatureStore - INFO - 全流程特征构建完成
+2026-01-07 16:07:18 - ProphetModel - INFO - 开始训练Prophet模型
+2026-01-07 16:07:18 - ProphetModel - INFO - Prophet数据准备完成 | 数据行数: 304 | 包含回归因子: ['温度', '温度差', '是否恶劣天气', '是否周末', '是否节假日', '是否促销', '销量_7天均值', '促销_周末交互']
+2026-01-07 16:07:19 - ProphetModel - INFO - 添加8个节假日到模型
+2026-01-07 16:07:19 - ProphetModel - INFO - 添加8个回归因子到模型
+2026-01-07 16:07:19 - ProphetModel - INFO - Prophet模型训练完成
+2026-01-07 16:07:21 - ProphetModel - ERROR - 模型训练失败: 'mape'
+Traceback (most recent call last):
+  File "G:\github\conda\Lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'mape'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\models\prophet_model.py", line 55, in train_prophet
+    self._cross_validate_model()
+  File "E:\github\my-smart_store\models\prophet_model.py", line 182, in _cross_validate_model
+    "mape": self.evaluation_metrics["mape"].mean(),
+            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'mape'
+2026-01-07 16:07:21 - main - ERROR - 主流程执行失败: 'mape'
+Traceback (most recent call last):
+  File "G:\github\conda\Lib\site-packages\pandas\core\indexes\base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'mape'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\prophet_cv.py", line 56, in main
+    model, prophet_df = prophet_model.train_prophet(final_features_df, target_col="销售数量")
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\models\prophet_model.py", line 55, in train_prophet
+    self._cross_validate_model()
+  File "E:\github\my-smart_store\models\prophet_model.py", line 182, in _cross_validate_model
+    "mape": self.evaluation_metrics["mape"].mean(),
+            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\github\conda\Lib\site-packages\pandas\core\indexes\base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'mape'
+2026-01-07 16:08:58 - main - INFO - 配置文件加载完成
+2026-01-07 16:08:58 - main - INFO - 原始数据加载完成
+2026-01-07 16:08:58 - main - INFO - ========== 开始处理商品[4701098]门店[205625] ==========
+2026-01-07 16:08:58 - DailyPreprocessor - INFO - 开始预处理商品[4701098]门店[205625]销售数据
+2026-01-07 16:08:58 - DailyPreprocessor - INFO - 基础过滤完成 | 过滤后数据行数: 570
+2026-01-07 16:08:58 - DailyPreprocessor - INFO - 每日聚合完成 | 聚合后数据行数: 242
+2026-01-07 16:08:58 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\sales_preprocessed_4701098_205625_20260107_160858.csv | 数据行数: 304
+2026-01-07 16:08:58 - DailyPreprocessor - INFO - 完成销售数据预处理 | 最终数据行数: 304
+2026-01-07 16:08:58 - DailyPreprocessor - INFO - 开始预处理天气数据
+2026-01-07 16:08:58 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\weather_preprocessed_20260107_160858.csv | 数据行数: 305
+2026-01-07 16:08:58 - DailyPreprocessor - INFO - 开始预处理日历数据
+2026-01-07 16:08:58 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\calendar_preprocessed_20260107_160858.csv | 数据行数: 304
+2026-01-07 16:08:58 - DailyFeatureStore - INFO - 开始全流程特征构建
+2026-01-07 16:08:58 - DailyFeatureStore - INFO - 时间特征创建完成
+2026-01-07 16:08:58 - DailyFeatureStore - INFO - 天气增强特征创建完成
+2026-01-07 16:08:58 - DailyFeatureStore - INFO - 日历增强特征创建完成
+2026-01-07 16:08:58 - DailyFeatureStore - INFO - 分类特征编码完成
+2026-01-07 16:08:58 - save_to_csv - INFO - 成功保存CSV: output\features\final_features_20260107_160858.csv | 数据行数: 304
+2026-01-07 16:08:58 - DailyFeatureStore - INFO - 全流程特征构建完成
+2026-01-07 16:08:58 - ProphetModel - INFO - 开始训练Prophet模型
+2026-01-07 16:08:58 - ProphetModel - INFO - Prophet数据准备完成 | 数据行数: 304 | 包含回归因子: ['温度', '温度差', '是否恶劣天气', '是否周末', '是否节假日', '是否促销', '销量_7天均值', '促销_周末交互']
+2026-01-07 16:08:58 - ProphetModel - INFO - 添加8个节假日到模型
+2026-01-07 16:08:58 - ProphetModel - INFO - 添加8个回归因子到模型
+2026-01-07 16:08:58 - ProphetModel - INFO - Prophet模型训练完成
+2026-01-07 16:09:01 - ProphetModel - INFO - ===== 模型交叉验证结果 =====
+2026-01-07 16:09:01 - ProphetModel - INFO - MAE: 1.09
+2026-01-07 16:09:01 - ProphetModel - INFO - RMSE: 1.43
+2026-01-07 16:09:01 - ProphetModel - INFO - MSE: 2.49
+2026-01-07 16:09:01 - ProphetModel - INFO - SMAPE: 70.22%
+2026-01-07 16:09:01 - ProphetModel - INFO - R2: 0.50
+2026-01-07 16:09:01 - ProphetModel - INFO - ============================
+2026-01-07 16:09:01 - save_to_csv - INFO - 成功保存CSV: output\evaluation\cv_evaluation_metrics_20260107_160901.csv | 数据行数: 13
+2026-01-07 16:09:01 - save_model - INFO - 成功保存模型: models\prophet_model_303days_20260107_160901.pkl
+2026-01-07 16:09:01 - ProphetModel - ERROR - 预测失败: 'forecast_periods'
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\models\prophet_model.py", line 241, in predict_prophet
+    periods=self.model_params["forecast_periods"],
+            ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'forecast_periods'
+2026-01-07 16:09:01 - main - ERROR - 主流程执行失败: 'forecast_periods'
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\prophet_cv.py", line 59, in main
+    forecast_df = prophet_model.predict_prophet(final_features_df)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\models\prophet_model.py", line 241, in predict_prophet
+    periods=self.model_params["forecast_periods"],
+            ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'forecast_periods'
+2026-01-07 16:09:43 - main - INFO - 配置文件加载完成
+2026-01-07 16:09:43 - main - INFO - 原始数据加载完成
+2026-01-07 16:09:43 - main - INFO - ========== 开始处理商品[4701098]门店[205625] ==========
+2026-01-07 16:09:43 - DailyPreprocessor - INFO - 开始预处理商品[4701098]门店[205625]销售数据
+2026-01-07 16:09:43 - DailyPreprocessor - INFO - 基础过滤完成 | 过滤后数据行数: 570
+2026-01-07 16:09:43 - DailyPreprocessor - INFO - 每日聚合完成 | 聚合后数据行数: 242
+2026-01-07 16:09:43 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\sales_preprocessed_4701098_205625_20260107_160943.csv | 数据行数: 304
+2026-01-07 16:09:43 - DailyPreprocessor - INFO - 完成销售数据预处理 | 最终数据行数: 304
+2026-01-07 16:09:43 - DailyPreprocessor - INFO - 开始预处理天气数据
+2026-01-07 16:09:43 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\weather_preprocessed_20260107_160943.csv | 数据行数: 305
+2026-01-07 16:09:43 - DailyPreprocessor - INFO - 开始预处理日历数据
+2026-01-07 16:09:43 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\calendar_preprocessed_20260107_160943.csv | 数据行数: 304
+2026-01-07 16:09:43 - DailyFeatureStore - INFO - 开始全流程特征构建
+2026-01-07 16:09:43 - DailyFeatureStore - INFO - 时间特征创建完成
+2026-01-07 16:09:43 - DailyFeatureStore - INFO - 天气增强特征创建完成
+2026-01-07 16:09:43 - DailyFeatureStore - INFO - 日历增强特征创建完成
+2026-01-07 16:09:43 - DailyFeatureStore - INFO - 分类特征编码完成
+2026-01-07 16:09:43 - save_to_csv - INFO - 成功保存CSV: output\features\final_features_20260107_160943.csv | 数据行数: 304
+2026-01-07 16:09:43 - DailyFeatureStore - INFO - 全流程特征构建完成
+2026-01-07 16:09:43 - ProphetModel - INFO - 开始训练Prophet模型
+2026-01-07 16:09:43 - ProphetModel - INFO - Prophet数据准备完成 | 数据行数: 304 | 包含回归因子: ['温度', '温度差', '是否恶劣天气', '是否周末', '是否节假日', '是否促销', '销量_7天均值', '促销_周末交互']
+2026-01-07 16:09:43 - ProphetModel - INFO - 添加8个节假日到模型
+2026-01-07 16:09:43 - ProphetModel - INFO - 添加8个回归因子到模型
+2026-01-07 16:09:43 - ProphetModel - INFO - Prophet模型训练完成
+2026-01-07 16:09:46 - ProphetModel - INFO - ===== 模型交叉验证结果 =====
+2026-01-07 16:09:46 - ProphetModel - INFO - MAE: 1.09
+2026-01-07 16:09:46 - ProphetModel - INFO - RMSE: 1.43
+2026-01-07 16:09:46 - ProphetModel - INFO - MSE: 2.49
+2026-01-07 16:09:46 - ProphetModel - INFO - SMAPE: 70.22%
+2026-01-07 16:09:46 - ProphetModel - INFO - R2: 0.50
+2026-01-07 16:09:46 - ProphetModel - INFO - ============================
+2026-01-07 16:09:46 - save_to_csv - INFO - 成功保存CSV: output\evaluation\cv_evaluation_metrics_20260107_160946.csv | 数据行数: 13
+2026-01-07 16:09:46 - save_model - INFO - 成功保存模型: models\prophet_model_303days_20260107_160946.pkl
+2026-01-07 16:09:46 - ProphetModel - ERROR - 预测失败: 'forecast_freq'
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\models\prophet_model.py", line 242, in predict_prophet
+    freq=self.model_params["forecast_freq"],
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'forecast_freq'
+2026-01-07 16:09:46 - main - ERROR - 主流程执行失败: 'forecast_freq'
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\prophet_cv.py", line 59, in main
+    forecast_df = prophet_model.predict_prophet(final_features_df)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\models\prophet_model.py", line 242, in predict_prophet
+    freq=self.model_params["forecast_freq"],
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'forecast_freq'
+2026-01-07 16:10:15 - main - INFO - 配置文件加载完成
+2026-01-07 16:10:15 - main - INFO - 原始数据加载完成
+2026-01-07 16:10:15 - main - INFO - ========== 开始处理商品[4701098]门店[205625] ==========
+2026-01-07 16:10:15 - DailyPreprocessor - INFO - 开始预处理商品[4701098]门店[205625]销售数据
+2026-01-07 16:10:15 - DailyPreprocessor - INFO - 基础过滤完成 | 过滤后数据行数: 570
+2026-01-07 16:10:15 - DailyPreprocessor - INFO - 每日聚合完成 | 聚合后数据行数: 242
+2026-01-07 16:10:15 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\sales_preprocessed_4701098_205625_20260107_161015.csv | 数据行数: 304
+2026-01-07 16:10:15 - DailyPreprocessor - INFO - 完成销售数据预处理 | 最终数据行数: 304
+2026-01-07 16:10:15 - DailyPreprocessor - INFO - 开始预处理天气数据
+2026-01-07 16:10:15 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\weather_preprocessed_20260107_161015.csv | 数据行数: 305
+2026-01-07 16:10:15 - DailyPreprocessor - INFO - 开始预处理日历数据
+2026-01-07 16:10:15 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\calendar_preprocessed_20260107_161015.csv | 数据行数: 304
+2026-01-07 16:10:15 - DailyFeatureStore - INFO - 开始全流程特征构建
+2026-01-07 16:10:15 - DailyFeatureStore - INFO - 时间特征创建完成
+2026-01-07 16:10:15 - DailyFeatureStore - INFO - 天气增强特征创建完成
+2026-01-07 16:10:15 - DailyFeatureStore - INFO - 日历增强特征创建完成
+2026-01-07 16:10:15 - DailyFeatureStore - INFO - 分类特征编码完成
+2026-01-07 16:10:15 - save_to_csv - INFO - 成功保存CSV: output\features\final_features_20260107_161015.csv | 数据行数: 304
+2026-01-07 16:10:15 - DailyFeatureStore - INFO - 全流程特征构建完成
+2026-01-07 16:10:15 - ProphetModel - INFO - 开始训练Prophet模型
+2026-01-07 16:10:15 - ProphetModel - INFO - Prophet数据准备完成 | 数据行数: 304 | 包含回归因子: ['温度', '温度差', '是否恶劣天气', '是否周末', '是否节假日', '是否促销', '销量_7天均值', '促销_周末交互']
+2026-01-07 16:10:15 - ProphetModel - INFO - 添加8个节假日到模型
+2026-01-07 16:10:15 - ProphetModel - INFO - 添加8个回归因子到模型
+2026-01-07 16:10:15 - ProphetModel - INFO - Prophet模型训练完成
+2026-01-07 16:10:18 - ProphetModel - INFO - ===== 模型交叉验证结果 =====
+2026-01-07 16:10:18 - ProphetModel - INFO - MAE: 1.09
+2026-01-07 16:10:18 - ProphetModel - INFO - RMSE: 1.43
+2026-01-07 16:10:18 - ProphetModel - INFO - MSE: 2.49
+2026-01-07 16:10:18 - ProphetModel - INFO - SMAPE: 70.22%
+2026-01-07 16:10:18 - ProphetModel - INFO - R2: 0.50
+2026-01-07 16:10:18 - ProphetModel - INFO - ============================
+2026-01-07 16:10:18 - save_to_csv - INFO - 成功保存CSV: output\evaluation\cv_evaluation_metrics_20260107_161018.csv | 数据行数: 13
+2026-01-07 16:10:18 - save_model - INFO - 成功保存模型: models\prophet_model_303days_20260107_161018.pkl
+2026-01-07 16:10:19 - ProphetModel - INFO - 预测可视化结果已保存到 output/visualization/
+2026-01-07 16:10:19 - ProphetModel - ERROR - 预测失败: 'forecast_periods'
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\models\prophet_model.py", line 255, in predict_prophet
+    logger.info(f"完成{self.model_params['forecast_periods']}天销量预测")
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'forecast_periods'
+2026-01-07 16:10:19 - main - ERROR - 主流程执行失败: 'forecast_periods'
+Traceback (most recent call last):
+  File "E:\github\my-smart_store\prophet_cv.py", line 59, in main
+    forecast_df = prophet_model.predict_prophet(final_features_df)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\github\my-smart_store\models\prophet_model.py", line 255, in predict_prophet
+    logger.info(f"完成{self.model_params['forecast_periods']}天销量预测")
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'forecast_periods'
+2026-01-07 16:11:24 - main - INFO - 配置文件加载完成
+2026-01-07 16:11:24 - main - INFO - 原始数据加载完成
+2026-01-07 16:11:24 - main - INFO - ========== 开始处理商品[4701098]门店[205625] ==========
+2026-01-07 16:11:24 - DailyPreprocessor - INFO - 开始预处理商品[4701098]门店[205625]销售数据
+2026-01-07 16:11:24 - DailyPreprocessor - INFO - 基础过滤完成 | 过滤后数据行数: 570
+2026-01-07 16:11:24 - DailyPreprocessor - INFO - 每日聚合完成 | 聚合后数据行数: 242
+2026-01-07 16:11:24 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\sales_preprocessed_4701098_205625_20260107_161124.csv | 数据行数: 304
+2026-01-07 16:11:24 - DailyPreprocessor - INFO - 完成销售数据预处理 | 最终数据行数: 304
+2026-01-07 16:11:24 - DailyPreprocessor - INFO - 开始预处理天气数据
+2026-01-07 16:11:24 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\weather_preprocessed_20260107_161124.csv | 数据行数: 305
+2026-01-07 16:11:24 - DailyPreprocessor - INFO - 开始预处理日历数据
+2026-01-07 16:11:24 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\calendar_preprocessed_20260107_161124.csv | 数据行数: 304
+2026-01-07 16:11:24 - DailyFeatureStore - INFO - 开始全流程特征构建
+2026-01-07 16:11:24 - DailyFeatureStore - INFO - 时间特征创建完成
+2026-01-07 16:11:24 - DailyFeatureStore - INFO - 天气增强特征创建完成
+2026-01-07 16:11:24 - DailyFeatureStore - INFO - 日历增强特征创建完成
+2026-01-07 16:11:24 - DailyFeatureStore - INFO - 分类特征编码完成
+2026-01-07 16:11:24 - save_to_csv - INFO - 成功保存CSV: output\features\final_features_20260107_161124.csv | 数据行数: 304
+2026-01-07 16:11:24 - DailyFeatureStore - INFO - 全流程特征构建完成
+2026-01-07 16:11:24 - ProphetModel - INFO - 开始训练Prophet模型
+2026-01-07 16:11:24 - ProphetModel - INFO - Prophet数据准备完成 | 数据行数: 304 | 包含回归因子: ['温度', '温度差', '是否恶劣天气', '是否周末', '是否节假日', '是否促销', '销量_7天均值', '促销_周末交互']
+2026-01-07 16:11:24 - ProphetModel - INFO - 添加8个节假日到模型
+2026-01-07 16:11:24 - ProphetModel - INFO - 添加8个回归因子到模型
+2026-01-07 16:11:24 - ProphetModel - INFO - Prophet模型训练完成
+2026-01-07 16:11:27 - ProphetModel - INFO - ===== 模型交叉验证结果 =====
+2026-01-07 16:11:27 - ProphetModel - INFO - MAE: 1.09
+2026-01-07 16:11:27 - ProphetModel - INFO - RMSE: 1.43
+2026-01-07 16:11:27 - ProphetModel - INFO - MSE: 2.49
+2026-01-07 16:11:27 - ProphetModel - INFO - SMAPE: 70.22%
+2026-01-07 16:11:27 - ProphetModel - INFO - R2: 0.50
+2026-01-07 16:11:27 - ProphetModel - INFO - ============================
+2026-01-07 16:11:27 - save_to_csv - INFO - 成功保存CSV: output\evaluation\cv_evaluation_metrics_20260107_161127.csv | 数据行数: 13
+2026-01-07 16:11:27 - save_model - INFO - 成功保存模型: models\prophet_model_303days_20260107_161127.pkl
+2026-01-07 16:11:28 - ProphetModel - INFO - 预测可视化结果已保存到 output/visualization/
+2026-01-07 16:11:28 - ProphetModel - INFO - 完成1天销量预测
+2026-01-07 16:11:28 - main - INFO - 预测结果:
+          ds  yhat  yhat_lower  yhat_upper
+0 2025-11-01 -0.61       -2.96        1.77
+2026-01-07 16:11:28 - main - INFO - ========== 完成处理商品[4701098]门店[205625] ==========
+
+2026-01-07 16:19:29 - main - INFO - 配置文件加载完成
+2026-01-07 16:19:29 - main - INFO - 原始数据加载完成
+2026-01-07 16:19:29 - main - INFO - ========== 开始处理商品[4701098]门店[205625] ==========
+2026-01-07 16:19:29 - DailyPreprocessor - INFO - 开始预处理商品[4701098]门店[205625]销售数据
+2026-01-07 16:19:29 - DailyPreprocessor - INFO - 基础过滤完成 | 过滤后数据行数: 570
+2026-01-07 16:19:29 - DailyPreprocessor - INFO - 每日聚合完成 | 聚合后数据行数: 242
+2026-01-07 16:19:29 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\sales_preprocessed_4701098_205625_20260107_161929.csv | 数据行数: 304
+2026-01-07 16:19:29 - DailyPreprocessor - INFO - 完成销售数据预处理 | 最终数据行数: 304
+2026-01-07 16:19:29 - DailyPreprocessor - INFO - 开始预处理天气数据
+2026-01-07 16:19:29 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\weather_preprocessed_20260107_161929.csv | 数据行数: 305
+2026-01-07 16:19:29 - DailyPreprocessor - INFO - 开始预处理日历数据
+2026-01-07 16:19:29 - save_to_csv - INFO - 成功保存CSV: output\preprocessed\calendar_preprocessed_20260107_161929.csv | 数据行数: 304
+2026-01-07 16:19:29 - DailyFeatureStore - INFO - 开始全流程特征构建
+2026-01-07 16:19:29 - DailyFeatureStore - INFO - 时间特征创建完成
+2026-01-07 16:19:29 - DailyFeatureStore - INFO - 天气增强特征创建完成
+2026-01-07 16:19:29 - DailyFeatureStore - INFO - 日历增强特征创建完成
+2026-01-07 16:19:29 - DailyFeatureStore - INFO - 分类特征编码完成
+2026-01-07 16:19:29 - save_to_csv - INFO - 成功保存CSV: output\features\final_features_20260107_161929.csv | 数据行数: 304
+2026-01-07 16:19:29 - DailyFeatureStore - INFO - 全流程特征构建完成
+2026-01-07 16:19:29 - ProphetModel - INFO - 开始训练Prophet模型
+2026-01-07 16:19:29 - ProphetModel - INFO - Prophet数据准备完成 | 数据行数: 304 | 包含回归因子: ['温度', '温度差', '是否恶劣天气', '是否周末', '是否节假日', '是否促销', '销量_7天均值', '促销_周末交互']
+2026-01-07 16:19:29 - ProphetModel - INFO - 添加8个节假日到模型
+2026-01-07 16:19:29 - ProphetModel - INFO - 添加8个回归因子到模型
+2026-01-07 16:19:30 - ProphetModel - INFO - Prophet模型训练完成
+2026-01-07 16:19:33 - ProphetModel - INFO - ===== 模型交叉验证结果 =====
+2026-01-07 16:19:33 - ProphetModel - INFO - MAE: 1.09
+2026-01-07 16:19:33 - ProphetModel - INFO - RMSE: 1.43
+2026-01-07 16:19:33 - ProphetModel - INFO - MSE: 2.49
+2026-01-07 16:19:33 - ProphetModel - INFO - SMAPE: 70.22%
+2026-01-07 16:19:33 - ProphetModel - INFO - R2: 0.50
+2026-01-07 16:19:33 - ProphetModel - INFO - ============================
+2026-01-07 16:19:33 - save_to_csv - INFO - 成功保存CSV: output\evaluation\cv_evaluation_metrics_20260107_161933.csv | 数据行数: 13
+2026-01-07 16:19:33 - save_model - INFO - 成功保存模型: models\prophet_model_303days_20260107_161933.pkl
+2026-01-07 16:19:34 - ProphetModel - INFO - 预测可视化结果已保存到 output/visualization/
+2026-01-07 16:19:34 - ProphetModel - INFO - 完成1天销量预测
+2026-01-07 16:19:34 - main - INFO - 预测结果:
+          ds  yhat  yhat_lower  yhat_upper
+0 2025-11-01 -0.61       -3.19        1.88
+2026-01-07 16:19:34 - main - INFO - ========== 完成处理商品[4701098]门店[205625] ==========
+
